@@ -1,8 +1,6 @@
 package goname
 
-/**
- * Generate random name.
- */
+//Generate random name.
 func Generate(number int) string {
 	return "notrandom"
 }

@@ -14,6 +14,5 @@ var _ = Describe("Goname", func() {
 				Expect(Generate(4)).To(Equal("notrandom"))
 			})
 		})
-
 	})
 })

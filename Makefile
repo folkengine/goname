@@ -126,3 +126,5 @@ help:
 .PHONY: version
 version:
 	@echo $(VERSION)
+
+# Makefile based on https://vincent.bernat.im/en/blog/2017-makefile-build-golang

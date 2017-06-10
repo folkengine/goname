@@ -2,3 +2,6 @@
 
 # goname
 Port of the [Random Name Generator](https://github.com/folkengine/random_name_generator) in go.
+
+# Notes
+I'm using this project to test out various CI servers.

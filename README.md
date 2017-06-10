@@ -5,3 +5,5 @@ Port of the [Random Name Generator](https://github.com/folkengine/random_name_ge
 
 # Notes
 I'm using this project to test out various CI servers.
+
+# Testing

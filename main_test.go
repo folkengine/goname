@@ -1,4 +1,4 @@
-package goname_test
+package main_test
 
 import (
 	. "github.com/folkengine/goname"

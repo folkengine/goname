@@ -1,6 +1,7 @@
-hash: 932a158e486f83e5d4fd923ff2eecda0e91c9c546a4cd752d6d4ff4ceb1910ab
-updated: 2017-06-07T20:55:33.50404981-04:00
-imports:
+hash: f02a24077702e39f9dbce40ddd93afdad93b53f64c7dc02482d57bb22eb066e9
+updated: 2017-06-10T19:37:51.102644514-04:00
+imports: []
+testImports:
 - name: github.com/onsi/ginkgo
   version: 77a8c1e5c40d6bb6c5eb4dd4bdce9763564f6298
   subpackages:
@@ -35,7 +36,6 @@ imports:
   - matchers/support/goraph/node
   - matchers/support/goraph/util
   - types
-testImports:
 - name: golang.org/x/sys
   version: b9e8d468b01f806830d387bd9a1fe96dc68129d1
   subpackages:

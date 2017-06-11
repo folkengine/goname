@@ -1,14 +1,30 @@
-version: 0.2
+version: 0.1
 
 phases:
+
+  install:
+    commands:
+      - go get github.com/Masterminds/glide
+      - glide install
+
+  pre_build:
+    commands:
+
+      # Ensure code passes all lint tests
+      - golint -set_exit_status
+
+      # Run all tests included with our application
+      - go test
+
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Go code...
-      - go build hello.go
-  post_build:
-    commands:
-      - echo Build completed on `date`
+
+      # Build our application
+      - go build -o goname
+
 artifacts:
   files:
-    - hello
+    - main.go
+    - buildspec.yml
+    - languages/*
+

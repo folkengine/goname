@@ -1,8 +1,6 @@
-package main_test
+package main
 
 import (
-	. "github.com/folkengine/goname"
-
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

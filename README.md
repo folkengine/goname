@@ -7,3 +7,6 @@ Port of the [Random Name Generator](https://github.com/folkengine/random_name_ge
 I'm using this project to test out various CI servers.
 
 # Testing
+
+* [ginko](https://github.com/onsi/ginkgo)
+* [gomega](https://github.com/onsi/gomega)

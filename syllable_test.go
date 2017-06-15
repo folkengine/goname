@@ -67,21 +67,21 @@ var _ = Describe("Syllable", func() {
 	})
 
 	Describe("Next syllable", func() {
-		Context("must start with consonant", func() {
+		Context("must start with a consonant", func() {
 			It("should return true if marked", func() {
 				syllables := [2]string{"-ang +c", "-ansr -v +c"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
-					Expect(syllable.nextMustStartWithConsonant).To(Equal(true),
-						fmt.Sprintf("SyllableFactory(%s).nextMustStartWithConsonant %t", syllable.text, syllable.nextMustStartWithConsonant))
+					Expect(syllable.nextStartsWithConsonant).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).nextStartsWithConsonant %t", syllable.text, syllable.nextStartsWithConsonant))
 				}
 			})
 			It("should return false if not marked", func() {
 				syllables := [3]string{"-ang -v", "-ansr -v -c", "-yada"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
-					Expect(syllable.nextMustStartWithConsonant).To(Equal(false),
-						fmt.Sprintf("SyllableFactory(%s).nextMustStartWithConsonant %t", raw, syllable.nextMustStartWithConsonant))
+					Expect(syllable.nextStartsWithConsonant).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).nextStartsWithConsonant %t", raw, syllable.nextStartsWithConsonant))
 				}
 			})
 		})
@@ -91,19 +91,39 @@ var _ = Describe("Syllable", func() {
 				syllables := [2]string{"-ang +v", "-ansr +v -c"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
-					Expect(syllable.nextMustStartWithVowel).To(Equal(true),
-						fmt.Sprintf("SyllableFactory(%s).nextMustStartWithVowel %t", syllable.text, syllable.nextMustStartWithVowel))
+					Expect(syllable.nextStartsWithVowel).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).nextStartsWithVowel %t", syllable.text, syllable.nextStartsWithVowel))
 				}
 			})
 			It("should return false if not marked", func() {
 				syllables := [3]string{"-ang -v", "-ansr -v +c", "-yada"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
-					Expect(syllable.nextMustStartWithVowel).To(Equal(false),
-						fmt.Sprintf("SyllableFactory(%s).nextMustStartWithVowel %t", raw, syllable.nextMustStartWithVowel))
+					Expect(syllable.nextStartsWithVowel).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).nextStartsWithVowel %t", raw, syllable.nextStartsWithVowel))
 				}
 			})
 		})
+	})
 
+	Describe("Previous syllable", func() {
+		Context("must end with a consonant", func() {
+			It("should return true if marked", func() {
+				syllables := [2]string{"-ang -c", "-ansr +v -c"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.previousEndsWithConsonant).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).previousEndsWithConsonant %t", syllable.text, syllable.previousEndsWithConsonant))
+				}
+			})
+			It("should return false if not marked", func() {
+				syllables := [3]string{"-ang +v", "-ansr -v +c", "-yada"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.previousEndsWithConsonant).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).previousEndsWithConsonant %t", raw, syllable.previousEndsWithConsonant))
+				}
+			})
+		})
 	})
 })

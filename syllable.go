@@ -8,20 +8,24 @@ import (
 var r, _ = regexp.Compile("([a-zA-Z]+)")
 
 type Syllable struct {
-	text     					string
-	isPrefix 					bool
-	isSuffix 					bool
-	nextMustStartWithConsonant 	bool
-	nextMustStartWithVowel		bool
+	text                     	string
+	isPrefix                	bool
+	isSuffix               		bool
+	nextStartsWithConsonant  	bool
+	nextStartsWithVowel     	bool
+	previousEndsWithConsonant	bool
+	previousEndsWithVowel		bool
 }
 
 func SyllableFactory(raw string) Syllable {
 	raw = strings.TrimSpace(raw)
-	return Syllable{text: stripMetadata(raw),
-		isPrefix: strings.HasPrefix(raw, "-"),
-		isSuffix: strings.HasPrefix(raw, "+"),
-		nextMustStartWithConsonant: strings.Contains(raw, "+c"),
-		nextMustStartWithVowel: strings.Contains(raw, "+v")}
+	return Syllable{text:        	stripMetadata(raw),
+		isPrefix:                	strings.HasPrefix(raw, "-"),
+		isSuffix:                	strings.HasPrefix(raw, "+"),
+		nextStartsWithConsonant: 	strings.Contains(raw, "+c"),
+		nextStartsWithVowel:     	strings.Contains(raw, "+v"),
+		previousEndsWithConsonant:	strings.Contains(raw, "-c"),
+		previousEndsWithVowel:  	strings.Contains(raw, "-v")}
 }
 
 func stripMetadata(raw string) string {

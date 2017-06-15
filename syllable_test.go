@@ -125,5 +125,44 @@ var _ = Describe("Syllable", func() {
 				}
 			})
 		})
+		Context("must end with a vowel", func() {
+			It("should return true if marked", func() {
+				syllables := [2]string{"-ang -v", "-ansr -v +c"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.previousEndsWithVowel).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).previousEndsWithVowel %t", syllable.text, syllable.previousEndsWithVowel))
+				}
+			})
+			It("should return false if not marked", func() {
+				syllables := [3]string{"-ang +v", "-ansr +v -c", "-yada"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.previousEndsWithVowel).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).previousEndsWithVowel %t", raw, syllable.previousEndsWithVowel))
+				}
+			})
+		})
+	})
+
+	Describe("First character", func() {
+		Context("is a consonant", func() {
+			It("should return true if it is", func() {
+				syllables := [...]string{"-ng -c", "-sr +v -c", "-Yada", "łala", "βarg"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.consonantFirst()).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).consonantFirst() %t", syllable.text, syllable.consonantFirst()))
+				}
+			})
+			It("should return false if it is not", func() {
+				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf","ʉnd", "œld", "øld"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.consonantFirst()).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).consonantFirst() %t", syllable.text, syllable.consonantFirst()))
+				}
+			})
+		})
 	})
 })

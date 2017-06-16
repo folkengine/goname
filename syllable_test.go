@@ -184,4 +184,44 @@ var _ = Describe("Syllable", func() {
 			})
 		})
 	})
+
+	Describe("Last character", func() {
+		Context("is a consonant", func() {
+			It("should return true if it is", func() {
+				syllables := [...]string{"-ng -c", "-sr +v -c", "-ansr", "loβ"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.consonantLast()).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).consonantLast() %t", syllable.text, syllable.consonantLast()))
+				}
+			})
+			It("should return false if it is not", func() {
+				syllables := [...]string{"-yada", "ria", "thi", "thrɯ"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.consonantLast()).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).consonantLast() %t", syllable.text, syllable.consonantLast()))
+				}
+			})
+		})
+
+		Context("is a vowel", func() {
+			It("should return true if it is", func() {
+				syllables := [...]string{"-yada", "ria", "thi"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.vowelLast()).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).vowelLast() %t", syllable.text, syllable.vowelLast()))
+				}
+			})
+			It("should return false if it is not", func() {
+				syllables := [...]string{"-kan", "+emar", "+nes", "+nin", "dul", "ean -c", "el", "emar"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.vowelLast()).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).vowelLast() %t", syllable.text, syllable.vowelLast()))
+				}
+			})
+		})
+	})
 })

@@ -31,6 +31,16 @@ func (syllable Syllable) vowelFirst() bool {
 	return strings.Contains(vowels, strings.ToLower(string(first)))
 }
 
+func (syllable Syllable) consonantLast() bool {
+	first, _ := utf8.DecodeLastRuneInString(syllable.text)
+	return strings.Contains(consonants, strings.ToLower(string(first)))
+}
+
+func (syllable Syllable) vowelLast() bool {
+	first, _ := utf8.DecodeLastRuneInString(syllable.text)
+	return strings.Contains(vowels, strings.ToLower(string(first)))
+}
+
 // SyllableFactory is a static factory method, generating Syllable object.
 func SyllableFactory(raw string) Syllable {
 	raw = strings.TrimSpace(raw)

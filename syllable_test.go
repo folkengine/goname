@@ -164,5 +164,24 @@ var _ = Describe("Syllable", func() {
 				}
 			})
 		})
+
+		Context("is a vowel", func() {
+			It("should return true if it is", func() {
+				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf","ʉnd", "œld", "øld"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.vowelFirst()).To(Equal(true),
+						fmt.Sprintf("SyllableFactory(%s).vowelFirst() %t", syllable.text, syllable.vowelFirst()))
+				}
+			})
+			It("should return false if it is not", func() {
+				syllables := [...]string{"-ng -c", "-Sr +v -c", "-ðada", "łala", "βarg"}
+				for _, raw := range syllables {
+					syllable := SyllableFactory(raw)
+					Expect(syllable.vowelFirst()).To(Equal(false),
+						fmt.Sprintf("SyllableFactory(%s).vowelFirst() %t", syllable.text, syllable.vowelFirst()))
+				}
+			})
+		})
 	})
 })

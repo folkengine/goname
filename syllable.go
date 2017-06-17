@@ -12,13 +12,14 @@ var vowels = "iyɨʉɯuɪʏʊɯʊeøɘɵɤoøəɵɤoɛœɜɞʌɔæɐɞaɶäɒɑ"
 
 // Syllable is an atomic building block used to construct names.
 type Syllable struct {
-	text                      string
-	isPrefix                  bool
-	isSuffix                  bool
-	nextStartsWithConsonant   bool
-	nextStartsWithVowel       bool
-	previousEndsWithConsonant bool
-	previousEndsWithVowel     bool
+	raw 						string
+	text                      	string
+	isPrefix                  	bool
+	isSuffix                  	bool
+	nextStartsWithConsonant   	bool
+	nextStartsWithVowel       	bool
+	previousEndsWithConsonant 	bool
+	previousEndsWithVowel     	bool
 }
 
 func (syllable Syllable) consonantFirst() bool {
@@ -41,16 +42,34 @@ func (syllable Syllable) vowelLast() bool {
 	return strings.Contains(vowels, strings.ToLower(string(first)))
 }
 
+func (syllable Syllable) nextIncompatible(next Syllable) bool {
+	vnc := syllable.nextStartsWithVowel && next.consonantFirst()
+	cnv := syllable.nextStartsWithConsonant && next.vowelFirst()
+	return vnc || cnv
+}
+
+func (syllable Syllable) previousIncompatible(next Syllable) bool {
+	vlc := syllable.vowelLast() && next.previousEndsWithConsonant
+	clv := syllable.consonantLast() && next.previousEndsWithVowel
+	return vlc || clv
+}
+
+func (syllable Syllable) incompatible(next Syllable) bool {
+	return syllable.nextIncompatible(next) || syllable.previousIncompatible(next)
+}
+
 // SyllableFactory is a static factory method, generating Syllable object.
 func SyllableFactory(raw string) Syllable {
 	raw = strings.TrimSpace(raw)
-	return Syllable{text: stripMetadata(raw),
-		isPrefix:                  strings.HasPrefix(raw, "-"),
-		isSuffix:                  strings.HasPrefix(raw, "+"),
-		nextStartsWithConsonant:   strings.Contains(raw, "+c"),
-		nextStartsWithVowel:       strings.Contains(raw, "+v"),
-		previousEndsWithConsonant: strings.Contains(raw, "-c"),
-		previousEndsWithVowel:     strings.Contains(raw, "-v")}
+	return Syllable{
+		raw:						raw,
+		text: 						stripMetadata(raw),
+		isPrefix:                  	strings.HasPrefix(raw, "-"),
+		isSuffix:                  	strings.HasPrefix(raw, "+"),
+		nextStartsWithConsonant:   	strings.Contains(raw, "+c"),
+		nextStartsWithVowel:       	strings.Contains(raw, "+v"),
+		previousEndsWithConsonant: 	strings.Contains(raw, "-c"),
+		previousEndsWithVowel:     	strings.Contains(raw, "-v")}
 }
 
 func stripMetadata(raw string) string {

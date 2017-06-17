@@ -224,4 +224,22 @@ var _ = Describe("Syllable", func() {
 			})
 		})
 	})
+
+	Describe("Incompatible", func() {
+		Context("when determining if two syllables are incompatible", func() {
+			XIt("it should return true when they aren't.", func() {
+				// [['yada', 'ria'], ['ae +c -c', 'lean -c'], ['lean -c', 'ae +c -c']]
+				Expect(SyllableFactory("yada")		.incompatible(SyllableFactory("ria"))).To(Equal(true))
+				Expect(SyllableFactory("ae +c -c")	.incompatible(SyllableFactory("lean -c"))).To(Equal(true))
+				Expect(SyllableFactory("lean -c")	.incompatible(SyllableFactory("ae +c -c"))).To(Equal(true))
+			})
+			XIt("it should return true when they are.", func() {
+				Expect(SyllableFactory("ria")		.incompatible(SyllableFactory("lean -c"))).To(Equal(false))
+				Expect(SyllableFactory("at")		.incompatible(SyllableFactory("la -v"))).To(Equal(false))
+				Expect(SyllableFactory("rail")		.incompatible(SyllableFactory("que -v +c"))).To(Equal(false))
+				Expect(SyllableFactory("ae +c -c")	.nextIncompatible(SyllableFactory("ael -c"))).To(Equal(false))
+				Expect(SyllableFactory("ria")		.incompatible(SyllableFactory("ael -c"))).To(Equal(false))
+			})
+		})
+	})
 })

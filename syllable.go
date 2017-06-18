@@ -58,6 +58,10 @@ func (syllable Syllable) incompatible(next Syllable) bool {
 	return syllable.nextIncompatible(next) || syllable.previousIncompatible(next)
 }
 
+func (syllable Syllable) compatible(next Syllable) bool {
+	return !syllable.incompatible(next)
+}
+
 // SyllableFactory is a static factory method, generating Syllable object.
 func SyllableFactory(raw string) Syllable {
 	raw = strings.TrimSpace(raw)

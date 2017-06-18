@@ -1,7 +1,15 @@
 package main
 
+func mapit(syllables[] Syllable) map[string]Syllable {
+	mymap := make(map[string]Syllable)
+	for _, v := range syllables {
+		mymap[v.text] = v
+	}
+	return mymap
+}
+
 // Elven language Syllables
-var Elven = [...] Syllable {
+var Elven = [] Syllable {
 	SyllableFactory("-Ael"),
 	SyllableFactory("-Aer"),
 	SyllableFactory("-af"),
@@ -88,8 +96,11 @@ var Elven = [...] Syllable {
 	SyllableFactory("+evar"),
 }
 
+// ElvenMap language Syllable Map
+var ElvenMap = mapit(Elven)
+
 // Fantasy language Syllables
-var Fantasy = [...] Syllable {
+var Fantasy = [] Syllable {
 	SyllableFactory("-a +c"),
 	SyllableFactory("-ab"),
 	SyllableFactory("-ac"),
@@ -442,8 +453,11 @@ var Fantasy = [...] Syllable {
 	SyllableFactory("+s"),
 }
 
+// FantasyMap language Syllable Map
+var FantasyMap = mapit(Fantasy)
+
 // Goblin language Syllables
-var Goblin = [...] Syllable {
+var Goblin = [] Syllable {
 	SyllableFactory("-waa +c"),
 	SyllableFactory("-boo +c"),
 	SyllableFactory("-gar"),
@@ -494,8 +508,11 @@ var Goblin = [...] Syllable {
 	SyllableFactory("+rgh -v"),
 }
 
+// GoblinMap language Syllable Map
+var GoblinMap = mapit(Goblin)
+
 // Roman language Syllables
-var Roman = [...] Syllable {
+var Roman = [] Syllable {
 	SyllableFactory("-a"),
 	SyllableFactory("-al"),
 	SyllableFactory("-au +c"),
@@ -532,3 +549,7 @@ var Roman = [...] Syllable {
 	SyllableFactory("+cio"),
 	SyllableFactory("+tin"),
 }
+
+// RomanMap language Syllable Map
+var RomanMap = mapit(Roman)
+

@@ -12,14 +12,14 @@ var vowels = "iyɨʉɯuɪʏʊɯʊeøɘɵɤoøəɵɤoɛœɜɞʌɔæɐɞaɶäɒɑ"
 
 // Syllable is an atomic building block used to construct names.
 type Syllable struct {
-	raw 						string
-	text                      	string
-	isPrefix                  	bool
-	isSuffix                  	bool
-	nextStartsWithConsonant   	bool
-	nextStartsWithVowel       	bool
-	previousEndsWithConsonant 	bool
-	previousEndsWithVowel     	bool
+	raw                       string
+	text                      string
+	isPrefix                  bool
+	isSuffix                  bool
+	nextStartsWithConsonant   bool
+	nextStartsWithVowel       bool
+	previousEndsWithConsonant bool
+	previousEndsWithVowel     bool
 }
 
 func (syllable Syllable) consonantFirst() bool {
@@ -66,14 +66,14 @@ func (syllable Syllable) compatible(next Syllable) bool {
 func SyllableFactory(raw string) Syllable {
 	raw = strings.TrimSpace(raw)
 	return Syllable{
-		raw:						raw,
-		text: 						stripMetadata(raw),
-		isPrefix:                  	strings.HasPrefix(raw, "-"),
-		isSuffix:                  	strings.HasPrefix(raw, "+"),
-		nextStartsWithConsonant:   	strings.Contains(raw, "+c"),
-		nextStartsWithVowel:       	strings.Contains(raw, "+v"),
-		previousEndsWithConsonant: 	strings.Contains(raw, "-c"),
-		previousEndsWithVowel:     	strings.Contains(raw, "-v")}
+		raw:                       raw,
+		text:                      stripMetadata(raw),
+		isPrefix:                  strings.HasPrefix(raw, "-"),
+		isSuffix:                  strings.HasPrefix(raw, "+"),
+		nextStartsWithConsonant:   strings.Contains(raw, "+c"),
+		nextStartsWithVowel:       strings.Contains(raw, "+v"),
+		previousEndsWithConsonant: strings.Contains(raw, "-c"),
+		previousEndsWithVowel:     strings.Contains(raw, "-v")}
 }
 
 func stripMetadata(raw string) string {

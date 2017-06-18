@@ -156,7 +156,7 @@ var _ = Describe("Syllable", func() {
 				}
 			})
 			It("should return false if it is not", func() {
-				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf","ʉnd", "œld", "øld"}
+				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf", "ʉnd", "œld", "øld"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
 					Expect(syllable.consonantFirst()).To(Equal(false),
@@ -167,7 +167,7 @@ var _ = Describe("Syllable", func() {
 
 		Context("is a vowel", func() {
 			It("should return true if it is", func() {
-				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf","ʉnd", "œld", "øld"}
+				syllables := [...]string{"-ang +v", "-ansr -v +c", "Aadf", "ʉnd", "œld", "øld"}
 				for _, raw := range syllables {
 					syllable := SyllableFactory(raw)
 					Expect(syllable.vowelFirst()).To(Equal(true),
@@ -228,32 +228,32 @@ var _ = Describe("Syllable", func() {
 	Describe("Incompatible", func() {
 		Context("when determining if two syllables are incompatible", func() {
 			It("it should return true when they are incompatible.", func() {
-				Expect(ElvenMap["ae"]					.incompatible(SyllableFactory("lean -c"))).To(Equal(true))
-				Expect(SyllableFactory("ria")		.incompatible(SyllableFactory("lean -c"))).To(Equal(true))
-				Expect(SyllableFactory("at")		.incompatible(SyllableFactory("la -v"))).To(Equal(true))
-				Expect(SyllableFactory("rail")		.incompatible(SyllableFactory("que -v +c"))).To(Equal(true))
-				Expect(SyllableFactory("ae +c -c")	.incompatible(SyllableFactory("ael -c"))).To(Equal(true))
-				Expect(SyllableFactory("ria")		.incompatible(SyllableFactory("ael -c"))).To(Equal(true))
+				Expect(ElvenMap["ae"].incompatible(SyllableFactory("lean -c"))).To(Equal(true))
+				Expect(SyllableFactory("ria").incompatible(SyllableFactory("lean -c"))).To(Equal(true))
+				Expect(SyllableFactory("at").incompatible(SyllableFactory("la -v"))).To(Equal(true))
+				Expect(SyllableFactory("rail").incompatible(SyllableFactory("que -v +c"))).To(Equal(true))
+				Expect(SyllableFactory("ae +c -c").incompatible(SyllableFactory("ael -c"))).To(Equal(true))
+				Expect(SyllableFactory("ria").incompatible(SyllableFactory("ael -c"))).To(Equal(true))
 			})
 			It("it should return false when they are.", func() {
-				Expect(SyllableFactory("lean -c")	.incompatible(SyllableFactory("ae +c -c"))).To(Equal(false))
-				Expect(SyllableFactory("yada")		.incompatible(SyllableFactory("ria"))).To(Equal(false))
+				Expect(SyllableFactory("lean -c").incompatible(SyllableFactory("ae +c -c"))).To(Equal(false))
+				Expect(SyllableFactory("yada").incompatible(SyllableFactory("ria"))).To(Equal(false))
 			})
 		})
 	})
 	Describe("Compatible", func() {
 		Context("when determining if two syllables are compatible", func() {
 			It("it should return false when they are compatible.", func() {
-				Expect(ElvenMap["ae"]					.compatible(SyllableFactory("lean -c"))).To(Equal(false))
-				Expect(SyllableFactory("ria")		.compatible(SyllableFactory("lean -c"))).To(Equal(false))
-				Expect(SyllableFactory("at")		.compatible(SyllableFactory("la -v"))).To(Equal(false))
-				Expect(SyllableFactory("rail")		.compatible(SyllableFactory("que -v +c"))).To(Equal(false))
-				Expect(SyllableFactory("ae +c -c")	.compatible(SyllableFactory("ael -c"))).To(Equal(false))
-				Expect(SyllableFactory("ria")		.compatible(SyllableFactory("ael -c"))).To(Equal(false))
+				Expect(ElvenMap["ae"].compatible(SyllableFactory("lean -c"))).To(Equal(false))
+				Expect(SyllableFactory("ria").compatible(SyllableFactory("lean -c"))).To(Equal(false))
+				Expect(SyllableFactory("at").compatible(SyllableFactory("la -v"))).To(Equal(false))
+				Expect(SyllableFactory("rail").compatible(SyllableFactory("que -v +c"))).To(Equal(false))
+				Expect(SyllableFactory("ae +c -c").compatible(SyllableFactory("ael -c"))).To(Equal(false))
+				Expect(SyllableFactory("ria").compatible(SyllableFactory("ael -c"))).To(Equal(false))
 			})
 			It("it should return true when they are.", func() {
-				Expect(SyllableFactory("lean -c")	.compatible(SyllableFactory("ae +c -c"))).To(Equal(true))
-				Expect(SyllableFactory("yada")		.compatible(SyllableFactory("ria"))).To(Equal(true))
+				Expect(SyllableFactory("lean -c").compatible(SyllableFactory("ae +c -c"))).To(Equal(true))
+				Expect(SyllableFactory("yada").compatible(SyllableFactory("ria"))).To(Equal(true))
 			})
 		})
 	})

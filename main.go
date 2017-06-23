@@ -2,12 +2,14 @@ package main
 
 import "fmt"
 
+// NameGenerator namge generating thing.
 type NameGenerator struct {
-	pre_syllables 	[]Syllable
-	mid_syllables	[]Syllable
-	sur_syllables  	[]Syllable
+	preSyllables []Syllable
+	midSyllables []Syllable
+	surSyllables []Syllable
 }
 
+// Goname is a static factory method generating NameGenerators
 func Goname(dialectMap map[string]Syllable) NameGenerator {
 	var first []Syllable
 	var mid []Syllable
@@ -23,9 +25,10 @@ func Goname(dialectMap map[string]Syllable) NameGenerator {
 		}
 	}
 	return NameGenerator{
-		pre_syllables: first,
-		mid_syllables: mid,
-		sur_syllables: last}
+		preSyllables: first,
+		midSyllables: mid,
+		surSyllables: last,
+	}
 }
 
 //Generate random name.

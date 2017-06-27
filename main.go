@@ -1,16 +1,41 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"strings"
+	"time"
+)
 
-// NameGenerator namge generating thing.
-type NameGenerator struct {
+
+var numberSyllablesPik = [...]int {2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5}
+
+func init() {
+	rand.Seed(time.Now().Unix()) // initialize global pseudo random generator
+}
+
+// Goname name generating thing.
+type Goname struct {
 	preSyllables []Syllable
 	midSyllables []Syllable
 	surSyllables []Syllable
 }
 
-// Goname is a static factory method generating NameGenerators
-func Goname(dialectMap map[string]Syllable) NameGenerator {
+
+func (goname Goname) preSyllableSample() Syllable {
+	return sampleSyllable(goname.preSyllables)
+}
+
+func (goname Goname) midSyllableSample() Syllable {
+	return sampleSyllable(goname.midSyllables)
+}
+
+func (goname Goname) surSyllableSample() Syllable {
+	return sampleSyllable(goname.surSyllables)
+}
+
+// New is a static factory method generating NameGenerators
+func New(dialectMap map[string]Syllable) Goname {
 	var first []Syllable
 	var mid []Syllable
 	var last []Syllable
@@ -24,18 +49,35 @@ func Goname(dialectMap map[string]Syllable) NameGenerator {
 			mid = append(mid, v)
 		}
 	}
-	return NameGenerator{
+	return Goname{
 		preSyllables: first,
 		midSyllables: mid,
 		surSyllables: last,
 	}
 }
 
-//Generate random name.
-func Generate(number int) string {
+// Compose random name.
+func (goname Goname) Compose(number int) string {
+	preSyllable := goname.preSyllableSample()
+	if number < 2 {
+		return strings.Title(preSyllable.text)
+	}
 	return "notrandom"
 }
 
+func (goname Goname) ComposeRnd() string {
+	return goname.Compose(pickSyllablesCount())
+}
+
+func sampleSyllable(syllables []Syllable) Syllable {
+	return syllables[rand.Intn(len(syllables))]
+}
+
+func pickSyllablesCount() int {
+	return numberSyllablesPik[rand.Intn(len(numberSyllablesPik))]
+}
+
 func main() {
-	fmt.Println(Generate(5))
+	goname := New(ElvenMap)
+	fmt.Println(goname.ComposeRnd())
 }

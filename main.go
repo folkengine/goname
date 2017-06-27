@@ -7,8 +7,7 @@ import (
 	"time"
 )
 
-
-var numberSyllablesPik = [...]int {2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5}
+var numberSyllablesPik = [...]int{2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5}
 
 func init() {
 	rand.Seed(time.Now().Unix()) // initialize global pseudo random generator
@@ -20,7 +19,6 @@ type Goname struct {
 	midSyllables []Syllable
 	surSyllables []Syllable
 }
-
 
 func (goname Goname) preSyllableSample() Syllable {
 	return sampleSyllable(goname.preSyllables)
@@ -65,6 +63,7 @@ func (goname Goname) Compose(number int) string {
 	return "notrandom"
 }
 
+// ComposeRnd generates random syllable length name
 func (goname Goname) ComposeRnd() string {
 	return goname.Compose(pickSyllablesCount())
 }
@@ -79,5 +78,5 @@ func pickSyllablesCount() int {
 
 func main() {
 	goname := New(ElvenMap)
-	fmt.Println(goname.ComposeRnd())
+	fmt.Println(goname.Compose(1))
 }

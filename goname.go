@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"math/rand"
 	"strings"
 	"time"
-	"bytes"
 )
 
 var numberSyllablesPik = [...]int{2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5}
@@ -32,11 +32,12 @@ func (goname Goname) surSyllableSample() Syllable {
 	return sampleSyllable(goname.surSyllables)
 }
 
+// NameSyllables returns a slice of Syllables based upon the number passed in.
 func (goname Goname) NameSyllables(number int) []Syllable {
 	var nameSyllables []Syllable
 	preSyllable := goname.preSyllableSample()
 	nameSyllables = append(nameSyllables, preSyllable)
-	for i := 1; i < number - 1; i++ {
+	for i := 1; i < number-1; i++ {
 		nameSyllables = append(nameSyllables, goname.midSyllableSample())
 	}
 	if number > 1 {
@@ -45,6 +46,7 @@ func (goname Goname) NameSyllables(number int) []Syllable {
 	return nameSyllables
 }
 
+// NameFromSyllables returns a Name from syllables.
 func (goname Goname) NameFromSyllables(syllables []Syllable) string {
 	var buffer bytes.Buffer
 	for _, syllable := range syllables {
@@ -63,6 +65,7 @@ func (goname Goname) NameRnd() string {
 	return goname.Name(pickSyllablesCount())
 }
 
+// FirstLast generates a string with a first and last name from random syllables.
 func (goname Goname) FirstLast() string {
 	return goname.NameRnd() + " " + goname.NameRnd()
 }

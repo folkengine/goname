@@ -1,4 +1,4 @@
-package main
+package goname
 
 func mapit(syllables []Syllable) map[string]Syllable {
 	mymap := make(map[string]Syllable)

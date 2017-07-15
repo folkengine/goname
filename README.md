@@ -9,6 +9,21 @@ Port of the [Random Name Generator](https://github.com/folkengine/random_name_ge
 $> go get github.com/folkengine/goname/...
 ```
 
+# Usage
+
+```bash
+$> goname -h
+Usage of goname:
+  -elven
+    	Create Elven names
+  -fantasy
+    	Create Fantasy names
+  -goblin
+    	Create Goblin names
+  -roman
+    	Create Roman names (default)
+```
+
 # Testing
 
 * [ginko](https://github.com/onsi/ginkgo)

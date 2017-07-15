@@ -22,7 +22,7 @@ all: fmt lint vendor | $(BASE) ; $(info $(M) building executable…) @ ## Build 
 	$Q cd $(BASE) && $(GO) build \
 		-tags release \
 		-ldflags '-X $(PACKAGE)/cmd.Version=$(VERSION) -X $(PACKAGE)/cmd.BuildDate=$(DATE)' \
-		-o bin/$(PACKAGE) main.go
+		-o bin/$(PACKAGE) cmd/goname/main.go
 
 $(BASE): ; $(info $(M) setting GOPATH…)
 	@mkdir -p $(dir $@)

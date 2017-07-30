@@ -16,7 +16,7 @@
 -am
 -an
 -anc
--and +c
+-andr +v
 -ang
 -anti
 -ap
@@ -25,6 +25,7 @@
 -mal
 
 add -c +v
+eal -c +c
 al -c
 am -c
 ama -c +c
@@ -46,7 +47,6 @@ or
 ra +c
 rat
 rax +v
-real
 sh
 thi +c
 
@@ -66,6 +66,7 @@ thi +c
 +nah
 +nyu
 +on -c
++phus -c
 +rept -v
 +res
 +s -v
@@ -77,7 +78,7 @@ thi +c
 
 # https://en.wikipedia.org/wiki/The_infernal_names
 
-Andrealphus (Christian demonology)
+
 Andromalius (Christian demonology)
 Antichrist (Christian demonology)
 Anzu (Sumerian mythology)

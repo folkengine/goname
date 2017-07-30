@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	goname "github.com/folkengine/goname"
+	"github.com/folkengine/goname"
 )
 
 func main() {

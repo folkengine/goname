@@ -1,0 +1,16 @@
+---
+resources:
+- name: resource-goname
+  type: git
+  source:
+    branch: ci
+    uri: https://github.com/folkengine/goname.git
+
+jobs:
+- name: job-test-goname
+  public: false
+  plan:
+  - get: resource-goname
+    trigger: true
+  - task: goname-tests
+    file: resource-goname/ci/tasks/task_run_tests.yaml

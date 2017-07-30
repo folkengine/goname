@@ -1,0 +1,11 @@
+---
+platform: linux
+
+image: docker:///golang#1.8.3-alpine3.6
+
+inputs:
+- name: resource-goname
+  path: go/src/github.com/folkengine/goname
+
+run:
+  path: go/src/github.com/folkengine/goname/ci/xunit

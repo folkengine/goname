@@ -28,3 +28,10 @@ Usage of goname:
 
 * [ginko](https://github.com/onsi/ginkgo)
 * [gomega](https://github.com/onsi/gomega)
+
+# Docker 
+
+```bash
+$> docker build -t goname .
+$> docker run -it goname
+```

@@ -7,7 +7,7 @@ image_resource:
 
 inputs:
 - name: resource-goname
-  path: gopath/src/github.com/PassengerTicketing/goname
+  path: gopath/src/github.com/folkengine/goname
 
 run:
   path: resource-goname/ci/scripts/task_run_tests.sh

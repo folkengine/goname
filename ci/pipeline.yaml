@@ -11,5 +11,4 @@ jobs:
   - get: resource-goname
     trigger: true
   - task: unit-tests
-    file: resource-goname/ci/xunit.yaml
-
+    file: resource-goname/build.yaml

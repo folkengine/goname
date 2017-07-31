@@ -7,8 +7,6 @@ image_resource:
 
 inputs:
 - name: resource-goname
-  path: go/src/github.com/folkengine/goname
 
 run:
-  path: go/src/github.com/folkengine/goname/ci/xunit
-        go/src/github.com/xchapter7x/concourse-demo-app/ci/run-unit-tests
+  path: ./goname/ci/xunit

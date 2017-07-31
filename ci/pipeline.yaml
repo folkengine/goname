@@ -9,10 +9,10 @@ resources:
 jobs:
 - name: unit-tests
   serial: true
-  public: true
   plan:
-  - get: resource-goname
-    trigger: true
-  - task: unit-tests
-    file: resource-goname/ci/xunit.yaml
+  - aggregate:
+    - get: resource-goname
+      trigger: true
+    - task: unit-tests
+      file: resource-goname/ci/xunit.yaml
 

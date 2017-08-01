@@ -11,4 +11,4 @@ jobs:
   - get: goname
     trigger: true
   - task: unit-tests
-    file: resource-goname/build.yaml
+    file: goname/build.yaml

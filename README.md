@@ -35,3 +35,16 @@ Usage of goname:
 $> docker build -t goname .
 $> docker run -it goname
 ```
+
+# Concourse
+
+```bash
+$> fly --target psgr login --concourse-url https://concourse.example.com
+$> fly set-pipeline --target psgr --config ci/pipeline.yaml --pipeline goname --non-interactive
+$> fly unpause-pipeline --target psgr --pipeline goname
+```
+
+To destroy:
+```bash
+$> fly -t psgr destroy-pipeline --pipeline goname
+```

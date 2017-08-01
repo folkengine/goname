@@ -1,5 +1,5 @@
 resources:
-- name: resource-goname
+- name: goname
   type: git
   source:
     branch: master
@@ -8,7 +8,7 @@ resources:
 jobs:
 - name: unit-tests
   plan:
-  - get: resource-goname
+  - get: goname
     trigger: true
   - task: unit-tests
     file: resource-goname/build.yaml

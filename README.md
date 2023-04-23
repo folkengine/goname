@@ -1,5 +1,3 @@
-[![Build Status](https://api.travis-ci.org/folkengine/goname.svg?branch=master)](https://travis-ci.org/folkengine/goname)
-
 # goname
 Port of the [Random Name Generator](https://github.com/folkengine/random_name_generator) in go.
 
@@ -34,17 +32,4 @@ Usage of goname:
 ```bash
 $> docker build -t goname .
 $> docker run -it goname
-```
-
-# Concourse
-
-```bash
-$> fly --target psgr login --concourse-url https://concourse.example.com
-$> fly set-pipeline --target psgr --config ci/pipeline.yaml --pipeline goname --non-interactive
-$> fly unpause-pipeline --target psgr --pipeline goname
-```
-
-To destroy:
-```bash
-$> fly -t psgr destroy-pipeline --pipeline goname
 ```
